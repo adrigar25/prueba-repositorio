@@ -20,3 +20,22 @@ http.createServer(function (req, res) {
  // tienen la función de enviar el archivo html
  // y finalizar el proceso de respuesta
  res.writeHead(200, { 'Content-Type': 'text/html' });
+res.write(pgres);
+ res.end();
+ }
+ });
+ }
+ else if (url === "/tailPage") {
+ fs.readFile("tail.html", function (err, pgres) {
+ if (err)
+ res.write("TAIL.HTML NOT FOUND");
+ else {
+ res.writeHead(200, { 'Content-Type': 'text/html' });
+ res.write(pgres);
+ res.end();
+ }
+ });
+ }
+}).listen(port, function () {
+ console.log("SERVER STARTED PORT: 8080");
+});
